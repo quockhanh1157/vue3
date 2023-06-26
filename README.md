@@ -17,3 +17,11 @@ yarn build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Add vue router
+```
+yarn add vue-router
+```
+```
+vue add router
+```
