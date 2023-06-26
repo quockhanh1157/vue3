@@ -1,14 +1,62 @@
 <template>
-  <p>Page default</p>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link :to="{name:'about'}">About</router-link> |
+
+    <!--    -->
+    <router-link :to="{name:'jobs'}">Jobs</router-link> |
+    <p>Path /all-jobs redirect to /jobs</p>
+
+    <button @click="redirect">Redirect Home</button>
+    <button @click="goBack">Go back</button>
+    <button @click="goForward">Go forward</button>
+
+  </nav>
+  <router-view/>
 </template>
 
-<script setup>
-
+<script>
+export default {
+  methods:{
+    redirect(){
+      this.$router.push({name:'home'})
+    },
+    goBack(){
+      this.$router.go(-1)
+    },
+    goForward(){
+      this.$router.go(1)
+    }
+  }
+}
 </script>
 
 <style>
-body {
-  background-color: #555555;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+button{
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
 </style>
