@@ -1,32 +1,35 @@
 <template>
-  <p>Project vue3</p>
-  <button @click="start" :disabled="isPlaying">Play</button>
-  <br/>
-  <Block v-if="isPlaying" :delay="delay" @end="endGame"/>
-  <Results v-if="!isPlaying" :score="score"/>
+  <button v-text="changeButton ? optionsAPI : compositionAPI"
+          @click.prevent="changeButton = !changeButton"
+  ></button>
+
+  <SignupFormOptionsAPI v-if="changeButton"/>
+  <SignupFormCompositionAPI v-if="!changeButton"/>
+
 </template>
 
 <script setup>
-
+import SignupFormOptionsAPI from "@/components/SignupFormOptionsAPI.vue";
 import {ref} from "vue";
-import Block from "@/components/Block.vue";
-import Results from "@/components/Results.vue";
+import SignupFormCompositionAPI from "@/components/SignupFormCompositionAPI.vue";
 
-const isPlaying = ref(false)
-const delay = ref(null)
-const score = ref(0)
-function start(){
-  delay.value = 2000 + Math.random() * 5000;
-  isPlaying.value = true
-
-  console.log(delay.value)
-}
-function endGame(reactionTimer){
-  score.value = reactionTimer.value
-  isPlaying.value = false
-}
+const changeButton = ref(false)
+const optionsAPI = ref("Options API")
+const compositionAPI = ref("Composition API")
 </script>
 
 <style>
+body {
+  background-color: #555555;
+}
 
+button {
+  background: #3c48b6;
+  border: 0;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: auto;
+}
 </style>
