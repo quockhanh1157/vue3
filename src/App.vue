@@ -1,35 +1,37 @@
 <template>
-  <button v-text="changeButton ? optionsAPI : compositionAPI"
-          @click.prevent="changeButton = !changeButton"
-  ></button>
+  <nav>
+    <router-link to="/">Home</router-link>
+    |
+    <router-link :to="{name:'about'}">About</router-link>
+    |
+    <router-link :to="{name:'blog'}">Blog</router-link>
 
-  <SignupFormOptionsAPI v-if="changeButton"/>
-  <SignupFormCompositionAPI v-if="!changeButton"/>
-
+  </nav>
+  <router-view/>
 </template>
 
-<script setup>
-import SignupFormOptionsAPI from "@/components/SignupFormOptionsAPI.vue";
-import {ref} from "vue";
-import SignupFormCompositionAPI from "@/components/SignupFormCompositionAPI.vue";
-
-const changeButton = ref(false)
-const optionsAPI = ref("Options API")
-const compositionAPI = ref("Composition API")
+<script>
 </script>
 
 <style>
-body {
-  background-color: #555555;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
-button {
-  background: #3c48b6;
-  border: 0;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-  margin: auto;
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
